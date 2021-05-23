@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 void sync(void) {
     system("rm -rf arch");
