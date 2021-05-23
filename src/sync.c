@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 void sync(void) {
     system("rm -rf arch");
@@ -7,5 +6,4 @@ void sync(void) {
     system("git clone https://github.com/marcelofern/arch.git");
     system("cd arch && make");
     system("rm -rf arch");
-    printf("sync tested!");
 }
