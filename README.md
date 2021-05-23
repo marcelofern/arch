@@ -41,8 +41,11 @@ Usage: arch [OPTION...]
 
   -d, --dotfiles             Install or sync dotfiles.
   -i, --install              Install environment dependencies from scratch.
+  -s, --sync                 Sync this script with its latest code.
   -u, --update               Update environment dependencies.
   -?, --help                 Give this help list
       --usage                Give a short usage message
   -V, --version              Print program version
 
+Report bugs to <marceelofernandes@gmail.com>.
+```

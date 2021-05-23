@@ -19,6 +19,7 @@ void install(void);
 void install_aur_package(char *package_name);
 void install_dependencies(void);
 void install_zsh_shell(void);
+void sync(void);
 void update(void);
 void update_all_aur_packages(void);
 void update_from_yay(void);

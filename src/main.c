@@ -25,6 +25,7 @@ static struct argp_option options[] = {
     {"install", 'i', 0, 0, "Install environment dependencies from scratch."},
     {"update", 'u', 0, 0, "Update environment dependencies."},
     {"dotfiles", 'd', 0, 0, "Install or sync dotfiles."},
+    {"sync", 's', 0, 0, "Sync this script with its latest code."},
     {0},
 };
 
@@ -33,6 +34,7 @@ struct arguments
     int install;
     int update;
     int dotfiles;
+    int sync;
 };
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state)
@@ -53,6 +55,9 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
         case 'd':
             arguments->dotfiles = 1;
             break;
+        case 's':
+            arguments->sync = 1;
+            break;
         default:
             return ARGP_ERR_UNKNOWN;
     }
@@ -69,10 +74,14 @@ int main(int argc, char **argv) {
     arguments.install = 0;
     arguments.update = 0;
     arguments.dotfiles = 0;
+    arguments.sync = 0;
 
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
-    count = arguments.install + arguments.update + arguments.dotfiles;
+    count = (
+        arguments.install + arguments.update
+        + arguments.dotfiles + arguments.sync
+    );
     if (count != 1) {
         fprintf(stderr, "This command can only take exactly one flag.\n");
         exit(1);
@@ -83,5 +92,7 @@ int main(int argc, char **argv) {
         update();
     else if (arguments.dotfiles)
         dotfiles();
+    else if (arguments.sync)
+        sync();
     exit(0);
 }
