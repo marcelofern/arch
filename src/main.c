@@ -3,7 +3,7 @@
  * ----------------------------------------------------
  *
  *  Dependencies:
- *    1 - `base-devel` for building the packages -> `sudo pacman -S base-devel`
+ *    1 - `base-devel` for building this package.
  *    2 - `git` for cloning this repo.
  *
  *  Installation:
@@ -18,19 +18,21 @@
 
 const char *argp_program_version = "v1.0";
 const char *argp_program_bug_address = "<marceelofernandes@gmail.com>";
-static char doc[] = "\narch: Marcelo's configuration for Arch linux";
+static char doc[] = "";
 static char args_doc[] = "";
 
 static struct argp_option options[] = {
     {"install", 'i', 0, 0, "Install environment dependencies from scratch."},
-    {"upgrade", 'u', 0, 0, "Upgrade environment dependencies."},
+    {"update", 'u', 0, 0, "Update environment dependencies."},
+    {"dotfiles", 'd', 0, 0, "Install or sync dotfiles."},
     {0},
 };
 
 struct arguments
 {
     int install;
-    int upgrade;
+    int update;
+    int dotfiles;
 };
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state)
@@ -46,7 +48,10 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
             arguments->install = 1;
             break;
         case 'u':
-            arguments->upgrade = 1;
+            arguments->update = 1;
+            break;
+        case 'd':
+            arguments->dotfiles = 1;
             break;
         default:
             return ARGP_ERR_UNKNOWN;
@@ -58,20 +63,25 @@ static struct argp argp = {options, parse_opt, args_doc, doc};
 
 int main(int argc, char **argv) {
     struct arguments arguments;
+    int count;
 
     /* Default values. */
     arguments.install = 0;
-    arguments.upgrade = 0;
+    arguments.update = 0;
+    arguments.dotfiles = 0;
 
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
 
-    if (arguments.install && arguments.upgrade) {
-        fprintf(stderr, "Too many flags. Use only -i or -u alone.\n");
+    count = arguments.install + arguments.update + arguments.dotfiles;
+    if (count != 1) {
+        fprintf(stderr, "This command can only take exactly one flag.\n");
         exit(1);
     }
     if (arguments.install)
         install();
-    else
+    else if (arguments.update)
         update();
+    else if (arguments.dotfiles)
+        dotfiles();
     exit(0);
 }

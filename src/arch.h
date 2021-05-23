@@ -13,6 +13,7 @@
 
 /* prototypes */
 int binary_exists(char *bin_name);
+void dotfiles(void);
 void initiate_systemctl_services(void);
 void install(void);
 void install_aur_package(char *package_name);
