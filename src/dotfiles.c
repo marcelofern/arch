@@ -27,4 +27,5 @@ void dotfiles(void) {
     else {
         system("cd ~ && git pull origin main");
     }
+    system("nitrogen --save --set-auto ~/Wallpapers/mountain-png.png");
 }

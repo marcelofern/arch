@@ -53,32 +53,32 @@ static void install_dependencies(void)
         // common
         "base-devel "
         // visual desktop
-        "xorg-server " "xorg-xinit " "xorg-xrandr " "xorg-xev " "xorg-xset "
-        "i3-gaps " "i3lock " "redshift " "nitrogen " "xf86-video-intel "
-        "python-pywal "
+        "xorg-server xorg-xinit xorg-xrandr xorg-xev xorg-xset "
+        "i3-gaps i3lock redshift nitrogen xf86-video-intel python-pywal "
+        "picom "
         // desktop utility
-        "flameshot " "peek " "rofi " "dmenu "
+        "flameshot peek rofi dmenu "
         // terminal
-        "zsh " "termite " "neofetch " "tmux " "htop " "xclip "
+        "zsh termite neofetch tmux htop xclip "
         // linux utility
-        "openssh " "zip " "unzip " "which " "tree "
+        "openssh zip unzip which tree "
         // bluetooth
-        "bluez " "bluez-utils " "pulseaudio-bluetooth "
+        "bluez bluez-utils pulseaudio-bluetooth "
         // audio
-        "pulseaudio " "alsa-utils "
+        "pulseaudio alsa-utils "
         // development 
-        "python " "python-pip " "git " "curl " "docker " "docker-compose "
-        "wget " "python2 "
+        "python python-pip git curl docker docker-compose "
+        "wget python2 "
         // neovim
-        "neovim " "ack " "ripgrep "
+        "neovim ack ripgrep "
         // pdf 
-        "zathura " "zathura-pdf-poppler "
+        "zathura zathura-pdf-poppler "
         // notification system
-        "dunst " "libnotify " "at "
+        "dunst libnotify at "
         // email
         "neomutt "
         // fonts
-        "ttf-dejavu " "noto-fonts " "noto-fonts-emoji "
+        "ttf-dejavu noto-fonts noto-fonts-emoji "
         // rss
         "newsboat "
         // usb
@@ -99,7 +99,7 @@ static void install_dependencies(void)
 
     install_aur_package("yay");
     char *yay_cmd =
-        "yay -S --needed --answerdiff=None --answerclean=All"
+        "yay -S --needed --answerdiff=None --answerclean=All "
         "polybar "
         // icons for polybar
         "ttf-font-icons "
