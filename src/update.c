@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static void update_from_yay();
+
 void update(void)
 {
     printf(YEL "updating hardware and system clock via ntpd..." RESET "\n");
@@ -13,7 +15,7 @@ void update(void)
     printf(GRN "all packages updated!" RESET "\n");
 }
 
-void update_from_yay(void) {
+static void update_from_yay(void) {
     if (!binary_exists("yay"))
         // print WARNING (installing yay)"
         install_aur_package("yay");

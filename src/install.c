@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "arch.h"
 
+static void install_zsh_shell(void);
+static void initiate_systemctl_services(void);
+static void install_dependencies(void);
+
 void install(void)
 {
     printf(YEL "Updating hardware and system clock via ntpd..." RESET "\n");
@@ -9,7 +13,7 @@ void install(void)
     printf(GRN "Hardware and system clock updated!" RESET "\n");
 
     printf(YEL "Installing dependencies..." RESET "\n");
-    //install_dependencies();
+    install_dependencies();
     printf(GRN "Dependencies installed..." RESET "\n");
 
     printf(YEL "Initiating systemctl services..." RESET "\n");
@@ -31,7 +35,7 @@ void install(void)
     printf(GRN "You are all set up now. reboot your PC!" RESET "\n");
 }
 
-void install_zsh_shell(void)
+static void install_zsh_shell(void)
 {
     system("chsh -l && chsh -s $(which zsh) $(whoami)");
     // downloading oh my zsh
@@ -42,7 +46,7 @@ void install_zsh_shell(void)
     );
 }
 
-void install_dependencies(void)
+static void install_dependencies(void)
 {
     char *pacman_cmd = 
         "sudo pacman -S --needed --noconfirm "
@@ -114,7 +118,7 @@ void install_dependencies(void)
     );
 }
 
-void initiate_systemctl_services(void)
+static void initiate_systemctl_services(void)
 {
     system("sudo systemctl start bluetooth.service");
     system("sudo systemctl enable bluetooth.service");
