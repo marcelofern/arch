@@ -105,10 +105,10 @@ static void install_dependencies(void)
         "ttf-font-icons "
         // neovim ctrl+p requirement:
         "ctags-git "
+        // neovim auto completer (commented out, use init.vim instead!)
+        // "vim-youcompleteme-git "
         // C gibberish to english:
-        "cdecl "
-        // neovim auto completer
-        "vim-youcompleteme-git ";
+        "cdecl ";
     system(yay_cmd);
 
     // neovim plugin manager

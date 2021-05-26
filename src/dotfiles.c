@@ -1,5 +1,3 @@
-#define _POSIX_C_SOURCE 2 // to allow popen and pclose.
-
 #include "arch.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,17 +5,11 @@
 
 
 void dotfiles(void) {
-    char git_status_result[MAX_STR_LEN];
-    FILE *fp;
+    char **git_status_output;
+    char *git_status_cmd = "cd ~ && git status 2>&1";
 
-    fp = popen("cd ~ && git status 2>&1", "r");
-    while (fgets(git_status_result, sizeof(git_status_result), fp) != NULL) {
-        ;
-    }
-    pclose(fp);
-
-    printf("%s", git_status_result);
-    if (strstr(git_status_result, "fatal: not a git repository")) {
+    git_status_output = read_command_line_output(git_status_cmd);
+    if (strstr(*git_status_output, "fatal: not a git repository")) {
         system("cd ~ && rm -rf dotfiles");
         system("cd ~ && git clone https://github.com/marcelofern/dotfiles.git");
         system("cd ~ && cp -rf dotfiles/.[!.]* . && rm -rf dotfiles");
