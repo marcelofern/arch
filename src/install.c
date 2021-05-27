@@ -90,13 +90,15 @@ static void install_dependencies(void)
         // webcam
         "v4l-utils "
         // dictionary
-        "dictd ";
+        "dictd "
+        // GNU C debugger
+        "gdb ";
     system(pacman_cmd);
 
     char *pip_cmd =
         "sudo pip install --upgrade "
         // dev dependencies
-        "pynvim " "virtualenv ";
+        "pynvim virtualenv ";
     system(pip_cmd);
 
     install_aur_package("yay");
