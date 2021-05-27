@@ -68,7 +68,9 @@ static void install_dependencies(void)
         "pulseaudio alsa-utils "
         // development 
         "python python-pip git curl docker docker-compose "
-        "wget python2 "
+        "wget "
+        // python2 is a dependency for sass-loader used in nuxtJs
+        "python2 "
         // neovim
         "neovim ack ripgrep "
         // pdf 
