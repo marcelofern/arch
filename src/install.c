@@ -79,6 +79,8 @@ static void install_dependencies(void)
         "neomutt "
         // fonts
         "ttf-dejavu noto-fonts noto-fonts-emoji "
+        // mirrors update
+        "reflector "
         // rss
         "newsboat "
         // usb

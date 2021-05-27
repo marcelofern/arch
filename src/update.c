@@ -10,6 +10,11 @@ void update(void)
     update_system_time();
     printf(GRN "hardware and system clock updated!" RESET "\n");
 
+    printf(YEL "updating mirrors..." RESET "\n");
+    update_system_time();
+    system("sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist");
+    printf(GRN "mirrors updated!" RESET "\n");
+
     printf(YEL "upgrading all packages..." RESET "\n");
     update_from_yay();
     printf(GRN "all packages updated!" RESET "\n");
