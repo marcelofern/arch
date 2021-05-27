@@ -91,6 +91,8 @@ static void install_dependencies(void)
         "v4l-utils "
         // dictionary
         "dictd "
+        // internet connection
+        "networkmanager "
         // GNU C debugger
         "gdb ";
     system(pacman_cmd);
@@ -132,4 +134,7 @@ static void initiate_systemctl_services(void)
 
     system("sudo systemctl start atd");
     system("sudo systemctl enable atd");
+
+    system("sudo systemctl enable NetworkManager");
+    system("sudo systemctl start NetworkManager");
 }
