@@ -6,9 +6,16 @@
 #include <string.h>
 
 /*
- * read the result of a command line call into an array of strings ("output").
+ * Reads the result of a command line call into an array of strings ("output").
  * Returns a pointer to an array containing these strings.
  * Needs to be freed by `free_command_line_output()` after used.
+ *
+ * USAGE:
+ *
+ *  output = read_comand_line_output(cmd);
+ *  for(int i = 0; cmd_output[i] != NULL; i++)
+ *    printf("%s\n", *cmd_output);
+ *  free_command_line_output(output);
  */
 char **read_command_line_output(char *cmd)
 {
@@ -21,6 +28,8 @@ char **read_command_line_output(char *cmd)
     while (fgets(buffer, sizeof(buffer), fp) && lines < MAX_NUM_LINES) {
         buffer[strcspn(buffer, "\n")] = 0;  // trims out the \n character.
         output[lines] = malloc(sizeof(buffer));
+        // buffer's value will cease to exist in the next interaction, so we
+        // need to copy its value to the output via memcpy or strcpy
         memcpy(output[lines++], buffer, MAX_STR_LEN);
     }
     output[lines+1] = NULL;  // end of the array
