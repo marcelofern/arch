@@ -22,10 +22,10 @@ static char doc[] = "";
 static char args_doc[] = "";
 
 static struct argp_option options[] = {
-    {"install", 'i', 0, 0, "Install environment dependencies from scratch."},
-    {"update", 'u', 0, 0, "Update environment dependencies."},
-    {"dotfiles", 'd', 0, 0, "Install or sync dotfiles."},
-    {"sync", 's', 0, 0, "Sync this script with its latest code."},
+    {"install", 'i', 0, 0, "Install environment dependencies from scratch.", 0},
+    {"update", 'u', 0, 0, "Update environment dependencies.", 0},
+    {"dotfiles", 'd', 0, 0, "Install or sync dotfiles.", 0},
+    {"sync", 's', 0, 0, "Sync this script with its latest code.", 0},
     {0},
 };
 
@@ -37,6 +37,8 @@ struct arguments
     int sync;
 };
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 static error_t parse_opt(int key, char *arg, struct argp_state *state)
 {
     /*
@@ -63,8 +65,12 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state)
     }
     return 0;
 }
+#pragma GCC diagnostic pop
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 static struct argp argp = {options, parse_opt, args_doc, doc};
+#pragma GCC diagnostic pop
 
 int main(int argc, char **argv) {
     struct arguments arguments;
