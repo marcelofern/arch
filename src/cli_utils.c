@@ -32,7 +32,7 @@ char **read_command_line_output(char *cmd)
         // need to copy its value to the output via memcpy or strcpy
         memcpy(output[lines++], buffer, MAX_STR_LEN);
     }
-    output[lines+1] = NULL;  // end of the array
+    output[lines+1] = NULL;  // denotes the end of the array
     pclose(fp);
     return output;
 }
