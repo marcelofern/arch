@@ -8,10 +8,6 @@
 #define WHT   "\x1B[37m"
 #define YEL   "\x1B[33m"
 
-/* strings and files in this program are way below this threshold though. */
-#define MAX_STR_LEN 1000
-#define MAX_NUM_LINES 1000
-
 /* prototypes */
 char **read_command_line_output(char *cmd);
 int binary_exists(char *bin_name);
