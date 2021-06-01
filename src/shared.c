@@ -1,18 +1,21 @@
-#include "arch.h"
+#include "cl_utils.h"
+
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 int binary_exists(char *bin_name) {
-    char which_cmd[MAX_STR_LEN];
-    char **cmd_output;
-    int binary_exists;
+    struct cl_it cl_it[1];
+    char *cmd = NULL;
 
     /* 2>&1 redirects stderr to stdout so that we catch errors */
-    sprintf(which_cmd, "which %s 2>&1", bin_name);
-    cmd_output = read_command_line_output(which_cmd);
-    binary_exists = strstr(*cmd_output, "which: no") ? 0 : 1;
-    free_command_line_output(cmd_output);
+    sprintf(cmd, "which %s 2>&1", bin_name);
+
+    cl_open(cl_it, cmd);
+    /* only grabs the first line from the iterator */
+    cl_next(cl_it);
+    int binary_exists = strstr(cl_it->line, "which: no") ? 0 : 1;
+    cl_close(cl_it);
     return binary_exists;
 }
 
@@ -25,8 +28,8 @@ void update_system_time(void)
 
 void install_aur_package(char *package_name)
 {
-    char clone_cmd[MAX_STR_LEN];
-    char make_cmd[MAX_STR_LEN];
+    char *clone_cmd = NULL;
+    char *make_cmd = NULL;
 
     sprintf(
         clone_cmd,
