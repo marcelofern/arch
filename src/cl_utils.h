@@ -1,3 +1,6 @@
+#ifndef CL_UTILS_H
+#define CL_UTILS_H
+
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 
@@ -13,3 +16,4 @@ struct cl_it {
 char *cl_next(struct cl_it *cl_it);
 int cl_close(struct cl_it *cl_it);
 int cl_open(struct cl_it *cl_it, const char *cmd);
+#endif

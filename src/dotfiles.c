@@ -1,4 +1,3 @@
-#include "arch.h"
 #include "cl_utils.h"
 
 #include <stdlib.h>
