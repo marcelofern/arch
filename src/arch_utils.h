@@ -8,12 +8,7 @@
 #define WHT   "\x1B[37m"
 #define YEL   "\x1B[33m"
 
-/* prototypes */
-char **read_command_line_output(char *cmd);
-int binary_exists(char *bin_name);
 void dotfiles(void);
 void install(void);
-void install_aur_package(char *package_name);
 void sync(void);
 void update(void);
-void update_system_time(void);

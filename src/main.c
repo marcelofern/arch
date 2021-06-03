@@ -12,7 +12,7 @@
  *  Upgrading:
  *    1 - TBD.
  */
-#include "arch.h"
+#include "arch_utils.h"
 #include <stdlib.h>
 #include <argp.h>
 
