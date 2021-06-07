@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
     );
     if (count != 1) {
         fprintf(stderr, "This command can only take exactly one flag.\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
     if (arguments.install)
         install();
@@ -100,5 +100,5 @@ int main(int argc, char **argv) {
         dotfiles();
     else if (arguments.sync)
         sync();
-    exit(0);
+    exit(EXIT_SUCCESS);
 }
