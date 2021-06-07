@@ -15,31 +15,31 @@ static void update_system_time(void);
 
 void install(void)
 {
-    printf(YEL "Updating hardware and system clock via ntpd..." RESET "\n");
+    puts(YEL "Updating hardware and system clock via ntpd..." RESET "\n");
     update_system_time();
-    printf(GRN "Hardware and system clock updated!" RESET "\n");
+    puts(GRN "Hardware and system clock updated!" RESET "\n");
 
-    printf(YEL "Installing dependencies..." RESET "\n");
+    puts(YEL "Installing dependencies..." RESET "\n");
     install_dependencies();
-    printf(GRN "Dependencies installed..." RESET "\n");
+    puts(GRN "Dependencies installed..." RESET "\n");
 
-    printf(YEL "Initiating systemctl services..." RESET "\n");
+    puts(YEL "Initiating systemctl services..." RESET "\n");
     initiate_systemctl_services();
-    printf(GRN "systemctl services initiated..." RESET "\n");
+    puts(GRN "systemctl services initiated..." RESET "\n");
 
-    printf(YEL "Setting gruvbox color schema..." RESET "\n");
+    puts(YEL "Setting gruvbox color schema..." RESET "\n");
     system("wal --theme base16-gruvbox-soft");
-    printf(GRN "Gruvbox was set..." RESET "\n");
+    puts(GRN "Gruvbox was set..." RESET "\n");
 
-    printf(YEL "Generating .ssh/ folder" RESET "\n");
+    puts(YEL "Generating .ssh/ folder" RESET "\n");
     system("ssh-keygen");
-    printf(GRN ".ssh/ folder was generated..." RESET "\n");
+    puts(GRN ".ssh/ folder was generated..." RESET "\n");
 
-    printf(YEL "Setting up zsh as shell" RESET "\n");
+    puts(YEL "Setting up zsh as shell" RESET "\n");
     install_zsh_shell();
-    printf(GRN "Zsh has been installed!" RESET "\n");
+    puts(GRN "Zsh has been installed!" RESET "\n");
 
-    printf(GRN "You are all set up now. reboot your PC!" RESET "\n");
+    puts(GRN "You are all set up now. reboot your PC!" RESET "\n");
 }
 
 void dotfiles(void) {
@@ -75,18 +75,18 @@ void sync(void) {
 
 void update(void)
 {
-    printf(YEL "updating hardware and system clock via ntpd..." RESET "\n");
+    puts(YEL "updating hardware and system clock via ntpd..." RESET "\n");
     update_system_time();
-    printf(GRN "hardware and system clock updated!" RESET "\n");
+    puts(GRN "hardware and system clock updated!" RESET "\n");
 
-    printf(YEL "updating mirrors..." RESET "\n");
+    puts(YEL "updating mirrors..." RESET "\n");
     update_system_time();
     system("sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist");
-    printf(GRN "mirrors updated!" RESET "\n");
+    puts(GRN "mirrors updated!" RESET "\n");
 
-    printf(YEL "upgrading all packages..." RESET "\n");
+    puts(YEL "upgrading all packages..." RESET "\n");
     update_from_yay();
-    printf(GRN "all packages updated!" RESET "\n");
+    puts(GRN "all packages updated!" RESET "\n");
 }
 
 static void install_zsh_shell(void)
