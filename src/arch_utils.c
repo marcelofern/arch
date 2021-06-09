@@ -80,7 +80,6 @@ void update(void)
     puts(GRN "hardware and system clock updated!" RESET "\n");
 
     puts(YEL "updating mirrors..." RESET "\n");
-    update_system_time();
     system("sudo reflector --latest 10 --sort rate --save /etc/pacman.d/mirrorlist");
     puts(GRN "mirrors updated!" RESET "\n");
 
@@ -110,6 +109,10 @@ static void install_dependencies(void)
         "xorg-server xorg-xinit xorg-xrandr xorg-xev xorg-xset "
         "i3-gaps i3lock redshift nitrogen xf86-video-intel python-pywal "
         "picom "
+        // package compiling
+        "cmake "
+        // network
+        "openntpd "
         // desktop utility
         "flameshot peek rofi dmenu "
         // terminal
@@ -155,12 +158,6 @@ static void install_dependencies(void)
         "gdb ";
     system(pacman_cmd);
 
-    char *pip_cmd =
-        "sudo pip install --upgrade "
-        // dev dependencies
-        "pynvim virtualenv ";
-    system(pip_cmd);
-
     install_aur_package("yay");
     char *yay_cmd =
         "yay -S --needed --answerdiff=None --answerclean=All "
@@ -180,6 +177,12 @@ static void install_dependencies(void)
         "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs "
         "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     );
+
+    char *pip_cmd =
+        "sudo pip install --upgrade "
+        // dev dependencies
+        "pynvim virtualenv ";
+    system(pip_cmd);
 }
 
 static void initiate_systemctl_services(void)
@@ -215,7 +218,7 @@ static int binary_exists(char *bin_name) {
 static void update_system_time(void)
 {
     system("timedatectl set-timezone \"NZ\"");
-    system("sudo ntpd -qg");
+    system("sudo ntpd");
     system("sudo hwclock --systohc");
 }
 
