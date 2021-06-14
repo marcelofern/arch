@@ -152,6 +152,8 @@ static void install_dependencies(void)
         "dictd "
         // internet connection
         "networkmanager "
+        // C memory checker
+        "valgrind "
         // C documentation generator
         "doxygen "
         // GNU C debugger
