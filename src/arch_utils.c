@@ -112,7 +112,7 @@ static void install_dependencies(void)
         // package compiling
         "cmake "
         // network
-        "openntpd "
+        "ntp "
         // desktop utility
         "flameshot peek rofi dmenu "
         // terminal
@@ -220,7 +220,7 @@ static int binary_exists(char *bin_name) {
 static void update_system_time(void)
 {
     system("timedatectl set-timezone \"NZ\"");
-    system("sudo ntpd");
+    system("sudo ntpd -qg");
     system("sudo hwclock --systohc");
 }
 
