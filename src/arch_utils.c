@@ -226,18 +226,23 @@ static void update_system_time(void)
 
 static void install_aur_package(char *package_name)
 {
-    char *clone_cmd = NULL;
-    char *make_cmd = NULL;
+    // No library has a long enough name to cover this length. So 1028
+    // should be more than sufficient allocated space.
+    int max_str_size = 1028;
+    char clone_cmd[max_str_size];
+    char make_cmd[max_str_size];
 
-    sprintf(
+    snprintf(
         clone_cmd,
+        sizeof(clone_cmd),
         "git clone https://aur.archlinux.org/%s.git",
         package_name
     );
     system(clone_cmd);
 
-    sprintf(
+    snprintf(
         make_cmd,
+        sizeof(make_cmd),
         "cd %s && yes | makepkg -sirc && cd .. && rm -rf %s",
         package_name, package_name
     );
