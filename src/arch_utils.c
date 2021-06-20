@@ -122,7 +122,7 @@ static void install_dependencies(void)
         // bluetooth
         "bluez bluez-utils pulseaudio-bluetooth "
         // audio
-        "pulseaudio alsa-utils "
+        "pulseaudio alsa-utils sof-firmware"
         // development 
         "python python-pip git curl docker docker-compose "
         "wget "
@@ -204,10 +204,10 @@ static void initiate_systemctl_services(void)
 
 static int binary_exists(char *bin_name) {
     struct cl_it cl_it[1];
-    char *cmd = NULL;
+    char cmd[256];
 
     /* 2>&1 redirects stderr to stdout so that we catch errors */
-    sprintf(cmd, "which %s 2>&1", bin_name);
+    snprintf(cmd, sizeof(cmd), "which %s 2>&1", bin_name);
 
     cl_open(cl_it, cmd);
     /* only grabs the first line from the iterator */
