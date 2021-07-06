@@ -63,6 +63,7 @@ void dotfiles(void) {
         system("cd ~ && git pull origin main");
     }
     system("nitrogen --save --set-auto ~/Wallpapers/mountain-png.png");
+    system("git config --global commit.template ~/.config/git/commit_message_template.md");
 }
 
 void sync(void) {
