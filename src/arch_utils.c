@@ -123,7 +123,7 @@ static void install_dependencies(void)
         // bluetooth
         "bluez bluez-utils pulseaudio-bluetooth "
         // audio
-        "pulseaudio alsa-utils sof-firmware"
+        "pulseaudio alsa-utils sof-firmware "
         // development 
         "python python-pip git curl docker docker-compose "
         "wget "
