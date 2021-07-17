@@ -117,7 +117,7 @@ static void install_dependencies(void)
         // desktop utility
         "flameshot peek rofi dmenu "
         // terminal
-        "zsh termite neofetch tmux htop xclip "
+        "zsh alacritty neofetch tmux htop xclip "
         // linux utility
         "openssh zip unzip which tree "
         // bluetooth
