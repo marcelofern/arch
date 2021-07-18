@@ -97,7 +97,7 @@ static void install_zsh_shell(void)
     system(
         "sh -c \"$(wget -O- "
         "https://raw.githubusercontent.com/"
-        "ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        "ohmyzsh/ohmyzsh/master/tools/install.sh)\""
     );
 }
 
