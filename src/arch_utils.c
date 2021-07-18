@@ -127,6 +127,8 @@ static void install_dependencies(void)
         "python2 "
         // neovim
         "neovim ack ripgrep "
+        // rss
+        "newsboat "
         // pdf
         "zathura zathura-pdf-poppler "
         // notification system
