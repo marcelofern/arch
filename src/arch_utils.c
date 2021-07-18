@@ -15,10 +15,6 @@ static void update_system_time(void);
 
 void install(void)
 {
-    puts(YEL "Updating hardware and system clock via ntpd..." RESET "\n");
-    update_system_time();
-    puts(GRN "Hardware and system clock updated!" RESET "\n");
-
     puts(YEL "Installing dependencies..." RESET "\n");
     install_dependencies();
     puts(GRN "Dependencies installed..." RESET "\n");
