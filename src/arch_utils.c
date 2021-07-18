@@ -87,6 +87,11 @@ void update(void)
     puts(YEL "upgrading all packages..." RESET "\n");
     update_from_yay();
     puts(GRN "all packages updated!" RESET "\n");
+
+    puts(YEL "Removing orphan packages..." RESET "\n");
+    system("sudo pacman -Qtdq | sudo pacman -Rns -");
+    puts(GRN "Orphan packages removed (if any)." RESET "\n");
+
 }
 
 static void install_zsh_shell(void)
@@ -104,20 +109,16 @@ static void install_dependencies(void)
 {
     char *pacman_cmd = 
         "sudo pacman -S --needed --noconfirm "
-        // common
-        "base-devel "
         // visual desktop
         "xorg-server xorg-xinit xorg-xrandr xorg-xev xorg-xset "
         "i3-gaps i3lock redshift nitrogen xf86-video-intel python-pywal "
-        "picom "
+        "picom flameshot rofi "
         // package compiling
         "cmake "
         // network
         "ntp "
-        // desktop utility
-        "flameshot peek rofi dmenu "
         // terminal
-        "zsh alacritty neofetch tmux htop xclip "
+        "zsh alacritty neofetch htop xclip "
         // linux utility
         "openssh zip unzip which tree "
         // bluetooth
@@ -125,54 +126,31 @@ static void install_dependencies(void)
         // audio
         "pulseaudio alsa-utils sof-firmware "
         // development 
-        "python python-pip git curl docker docker-compose "
-        "wget "
+        "base-devel python python-pip git curl docker docker-compose "
         // python2 is a dependency for sass-loader used in nuxtJs
         "python2 "
         // neovim
         "neovim ack ripgrep "
-        // pdf 
+        // pdf
         "zathura zathura-pdf-poppler "
         // notification system
         "dunst libnotify at "
-        // email
-        "neomutt "
         // fonts
-        "ttf-dejavu noto-fonts noto-fonts-emoji "
+        "ttf-dejavu "
         // mirrors update
         "reflector "
-        // rss
-        "newsboat "
-        // usb
-        "udisks2 "
         // browser
         "firefox "
-        // webcam
-        "v4l-utils "
-        // dictionary
-        "dictd "
         // internet connection
-        "networkmanager "
-        // C memory checker
-        "valgrind "
-        // C documentation generator
-        "doxygen "
-        // GNU C debugger
-        "gdb ";
+        "networkmanager ";
     system(pacman_cmd);
 
     install_aur_package("yay");
     char *yay_cmd =
         "yay -S --needed --answerdiff=None --answerclean=All "
         "polybar "
-        // icons for polybar
-        "ttf-font-icons "
         // neovim ctrl+p requirement:
-        "ctags-git "
-        // neovim auto completer (commented out, use init.vim instead!)
-        // "vim-youcompleteme-git "
-        // C gibberish to english:
-        "cdecl ";
+        "ctags-git ";
     system(yay_cmd);
 
     // neovim plugin manager
