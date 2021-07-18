@@ -145,6 +145,8 @@ static void install_dependencies(void)
     char *yay_cmd =
         "yay -S --needed --answerdiff=None --answerclean=All "
         "polybar "
+        // polybar icons font
+        "ttf-font-icons "
         // neovim ctrl+p requirement:
         "ctags-git ";
     system(yay_cmd);
