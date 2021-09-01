@@ -58,7 +58,7 @@ void dotfiles(void) {
     else {
         system("cd ~ && git pull origin main");
     }
-    system("nitrogen --save --set-auto ~/Wallpapers/mountain-png.png");
+    system("nitrogen --save --set-auto ~/Wallpapers/mountain.png");
     system("git config --global commit.template ~/.config/git/commit_message_template.md");
 }
 
